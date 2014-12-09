@@ -64,13 +64,13 @@ namespace Test.Settings
 		{
 			FixOne.Engine.Settings.EngineSettings settings = new FixOne.Engine.Settings.EngineSettings();
 			settings.LoadFrom(@"D:\My\FixOne\Tests\Test.Settings\bin\Debug\engine.xml");
-			settings.DefaultHeartBeatInetrval = 60;
+			settings.DefaultHeartBeatInterval = 60;
 			settings.Save(@"D:\My\FixOne\Tests\Test.Settings\bin\Debug\engine.xml");
 
 			FixOne.Engine.Settings.EngineSettings settings1 = new FixOne.Engine.Settings.EngineSettings();
 			settings1.LoadFrom(@"D:\My\FixOne\Tests\Test.Settings\bin\Debug\engine.xml");
 
-			Assert.AreEqual(settings.DefaultHeartBeatInetrval, settings1.DefaultHeartBeatInetrval);
+			Assert.AreEqual(settings.DefaultHeartBeatInterval, settings1.DefaultHeartBeatInterval);
 			
 		}
 	}
