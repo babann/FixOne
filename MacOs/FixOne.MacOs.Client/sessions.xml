@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Sessions>
+	<!--<Session Role="Initiator" Version="FIX40" HeartBeat="30">
+		<SenderCompId>Client</SenderCompId>
+		<TargetCompId>ServerO</TargetCompId>
+		<Acceptor Address="10.17.1.217" Port="10001" ReconnectAttemts="1"/>
+	</Session>
+	<Session Role="Initiator" Version="FIX40" HeartBeat="30">
+		<SenderCompId>Client</SenderCompId>
+		<TargetCompId>ServerH</TargetCompId>
+		<Acceptor Address="192.168.1.4" Port="10001" ReconnectAttemts="1"/>
+	</Session>
+	<Session Role="Initiator" Version="FIX40" HeartBeat="30">
+		<SenderCompId>UnknownClient</SenderCompId>
+		<TargetCompId>ServerO</TargetCompId>
+		<Acceptor Address="10.17.1.217" Port="10001" ReconnectAttemts="1"/>
+	</Session>
+	<Session Role="Initiator" Version="FIX40" HeartBeat="30">
+		<SenderCompId>UnknownClient</SenderCompId>
+		<TargetCompId>ServerH</TargetCompId>
+		<Acceptor Address="192.168.1.4" Port="10001" ReconnectAttemts="1"/>
+	</Session>-->
+	<Session Role="Initiator" Version="FIX44" HeartBeat="30">
+		<SenderCompId>Client1</SenderCompId>
+		<TargetCompId>ServerE</TargetCompId>
+		<Acceptor Address="192.168.1.4" Port="10001" ReconnectAttemts="1" />
+		<Storages>
+			<Name>XML Persistent Storage</Name>
+		</Storages>
+	</Session>
+	<Session Role="Initiator" Version="FIX44" HeartBeat="30">
+		<SenderCompId>Client2</SenderCompId>
+		<TargetCompId>ServerE</TargetCompId>
+		<Acceptor Address="192.168.1.4" Port="10001" ReconnectAttemts="1" />
+		<Storages>
+			<Name>XML Persistent Storage</Name>
+		</Storages>
+	</Session>
+	<Session Role="Initiator" Version="FIX44" HeartBeat="30">
+		<SenderCompId>Client3</SenderCompId>
+		<TargetCompId>ServerE</TargetCompId>
+		<Acceptor Address="192.168.1.4" Port="10001" ReconnectAttemts="1" />
+		<Storages>
+			<Name>XML Persistent Storage</Name>
+		</Storages>
+	</Session>
+</Sessions>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sessions>
+	<Session Role="Acceptor" Version="FIX44" HeartBeat="30">
+		<SenderCompId>ServerO</SenderCompId>
+		<TargetCompId>Client</TargetCompId>
+	</Session>
+	<Session Role="Acceptor" Version="FIX44" HeartBeat="30">
+		<SenderCompId>ServerH</SenderCompId>
+		<TargetCompId>Client</TargetCompId>
+	</Session>
+	<Session Role="Acceptor" Version="FIX44" HeartBeat="30">
+		<SenderCompId>ServerE</SenderCompId>
+		<TargetCompId>Client</TargetCompId>
+	</Session>
+</Sessions>

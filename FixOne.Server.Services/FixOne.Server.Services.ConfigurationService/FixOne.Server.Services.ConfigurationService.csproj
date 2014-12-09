@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{63577669-03E6-497E-890F-1D9F06D49A85}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FixOne.Server.Services.ConfigurationService</RootNamespace>
+    <AssemblyName>FixOne.Server.Services.ConfigurationService</AssemblyName>
+    <ReleaseVersion>0.0.0.1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IConfigurationService.cs" />
+    <Compile Include="ConfigurationService.cs" />
+    <Compile Include="Status.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\MacOs\FixOne.MacOs.Shared\FixOne.MacOs.Shared.csproj">
+      <Project>{6655893C-72E0-41E3-A665-845E5FC513AD}</Project>
+      <Name>FixOne.MacOs.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FixOne.Engine\FixOne.Engine.csproj">
+      <Project>{6F683FF7-81B7-4835-8DA1-D4860ACF688A}</Project>
+      <Name>FixOne.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FixOne.Engine.Settings\FixOne.Engine.Settings.csproj">
+      <Project>{5FC4D2CC-C971-4D25-B3CC-62675BB76EE6}</Project>
+      <Name>FixOne.Engine.Settings</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

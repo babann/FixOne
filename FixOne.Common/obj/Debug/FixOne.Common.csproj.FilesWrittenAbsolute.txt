@@ -1,0 +1,7 @@
+/Users/vasilysemenov/Projects/FixOne/FixOne.Common/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/vasilysemenov/Projects/FixOne/FixOne.Common/bin/Debug/FixOne.Common.dll.mdb
+/Users/vasilysemenov/Projects/FixOne/FixOne.Common/bin/Debug/FixOne.Common.dll
+/Users/vasilysemenov/Projects/FixOne/FixOne.Common/obj/Debug/FixOne.Common.dll
+/Users/vasilysemenov/Projects/FixOne/FixOne.Common/obj/Debug/FixOne.Common.dll.mdb
+/Users/vasilysemenov/Projects/FixOne/FixOne.Common/bin/Debug/FixOne.Entities.dll
+/Users/vasilysemenov/Projects/FixOne/FixOne.Common/bin/Debug/FixOne.Entities.dll.mdb

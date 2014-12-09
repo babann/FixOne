@@ -1,0 +1,5 @@
+/Users/vasilysemenov/Projects/FixOne/Dictionaries/FixOne.Dictionaries.FIX44/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/vasilysemenov/Projects/FixOne/Bin/Dictionaries/FixOne.Dictionaries.FIX44.dll.mdb
+/Users/vasilysemenov/Projects/FixOne/Bin/Dictionaries/FixOne.Dictionaries.FIX44.dll
+/Users/vasilysemenov/Projects/FixOne/Dictionaries/FixOne.Dictionaries.FIX44/obj/Debug/FixOne.Dictionaries.FIX44.dll
+/Users/vasilysemenov/Projects/FixOne/Dictionaries/FixOne.Dictionaries.FIX44/obj/Debug/FixOne.Dictionaries.FIX44.dll.mdb

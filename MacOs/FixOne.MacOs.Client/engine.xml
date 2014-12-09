@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FixOne>
+	<LogToTrace>
+		<Settings level="Info"/>
+	</LogToTrace>
+	<LogToTextFile>
+		<Settings
+			level="Debug"
+			path="/Users/vasilysemenov/Projects/FixOne/Bin/DebugLogs/Client"/>
+	</LogToTextFile>
+	<XmlStorage>
+		<Settings
+			path="/Users/vasilysemenov/Projects/FixOne/Bin/XmlStorageData"/>
+	</XmlStorage>
+	<Engine>
+		<Loggers path="/Users/vasilysemenov/Projects/FixOne/Bin/Loggers" />
+		<Dictionaries path="/Users/vasilysemenov/Projects/FixOne/Bin/Dictionaries" />
+		<Storages path="/Users/vasilysemenov/Projects/FixOne/Bin/Storages" />
+		<Instance port="10002"/>
+		<EnabledLoggers>
+			<item>Log to System Trace</item>
+		</EnabledLoggers>
+		<EnabledStorages>
+			<item>XML Persistent Storage</item>
+		</EnabledStorages>
+	</Engine>
+</FixOne>

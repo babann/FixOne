@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FixOne>
+	<LogToTrace>
+		<Settings level="Info"/>
+	</LogToTrace>
+	<LogToTextFile>
+		<Settings
+			level="Debug"
+			path="\\DebugLogs"/>
+	</LogToTextFile>
+	<Engine>
+		<Instance address="127.0.0.1" port="10001"/>
+		<Loggers path="..\Loggers" />
+		<Dictionaries path="..\Dictionaries" />
+		<Storages path="..\Storages" />
+		<Defaults numOfWP="4" hrtBit="30"/>
+		<Settings acceptAll="false" reconnectDelay="60" sessions="sessions.xml" />
+		<EnabledLoggers>
+			<item>Log to System Trace</item>
+			<item>Log to Text File</item>
+		</EnabledLoggers>
+		<EnabledStorages>
+			<item>XML Persistent Storage</item>
+		</EnabledStorages>
+	</Engine>
+</FixOne>

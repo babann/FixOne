@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FixOne>
+	<LogToTrace>
+		<Settings level="Info"/>
+	</LogToTrace>
+	<LogToTextFile>
+		<Settings
+			level="Debug"
+			path="..\\DebugLogs\Client"/>
+	</LogToTextFile>
+	<Engine>
+		<Instance port="10002"/>
+		<EnabledLoggers>
+			<item>Log to System Trace</item>
+		</EnabledLoggers>
+		<EnabledStorages>
+			<item>XML Persistent Storage</item>
+		</EnabledStorages>
+	</Engine>
+</FixOne>
