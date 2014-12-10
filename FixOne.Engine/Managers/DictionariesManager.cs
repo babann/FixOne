@@ -15,13 +15,22 @@ using System.ComponentModel;
 
 namespace FixOne.Engine.Managers
 {
+	/// <summary>
+	/// Dictionaries manager.
+	/// </summary>
 	class DictionariesManager : GenericManager<IProtocolDictionary, DictionariesManager>
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FixOne.Engine.Managers.DictionariesManager"/> class.
+		/// </summary>
 		private DictionariesManager()
 			: base(SettingsManager.Instance.CurrentSettings.DictionariesPath)
 		{
 		}
 
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
 		internal void Start()
 		{
 			EngineLogManager.Instance.Info ("Dictionary manager started. {0} dictionaries available.", AvailableModules.Count().ToString());
@@ -56,9 +65,21 @@ namespace FixOne.Engine.Managers
 			return dictionary;
 		}
 
+		/// <summary>
+		/// Gets the dictionary by fix version.
+		/// </summary>
 		public IProtocolDictionary GetDictionaryByFixVersion(FixVersion version)
 		{
 			return AvailableModules.Where(module => module.SupportedVersion == version).FirstOrDefault();
+		}
+
+		/// <summary>
+		/// Adds the to the list dictionary.
+		/// </summary>
+		/// <returns><c>true</c>, if dictionary was added, <c>false</c> otherwise.</returns>
+		/// <param name="replace">If set to <c>true</c> replace.</param>
+		public bool AddDictionary(IProtocolDictionary dictionary, bool replace) {
+			return base.AddModule (dictionary, replace);
 		}
 	}
 }

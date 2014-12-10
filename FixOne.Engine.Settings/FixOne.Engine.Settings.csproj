@@ -59,6 +59,10 @@
       <Project>{38C746A9-1693-43F2-80F0-1E132D734126}</Project>
       <Name>FixOne.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FixOne.Common\FixOne.Common.csproj">
+      <Project>{C06D802E-BF5F-4B36-B167-44021F6B8E23}</Project>
+      <Name>FixOne.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

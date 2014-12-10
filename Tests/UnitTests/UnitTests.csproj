@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3D308897-3D04-40CC-B893-1F6DFF770641}</ProjectGuid>
+    <ProjectGuid>{6FCFA7C4-51E9-48F2-8583-B3ED5A0020D5}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FixOne.Statistics</RootNamespace>
-    <AssemblyName>FixOne.Statistics</AssemblyName>
-    <ReleaseVersion>0.0.0.1</ReleaseVersion>
+    <RootNamespace>UnitTests</RootNamespace>
+    <AssemblyName>UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,17 +31,38 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Moq">
+      <HintPath>..\..\ReferenceLibraries\Moq\Moq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Latency.cs" />
-    <Compile Include="LatencyCalculatorEntity.cs" />
+    <Compile Include="Test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\FixOne.Entities\FixOne.Entities.csproj">
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FixOne.Entities\FixOne.Entities.csproj">
       <Project>{38C746A9-1693-43F2-80F0-1E132D734126}</Project>
       <Name>FixOne.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FixOne.Engine\FixOne.Engine.csproj">
+      <Project>{6F683FF7-81B7-4835-8DA1-D4860ACF688A}</Project>
+      <Name>FixOne.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FixOne.Common\FixOne.Common.csproj">
+      <Project>{C06D802E-BF5F-4B36-B167-44021F6B8E23}</Project>
+      <Name>FixOne.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FixOne.Engine.Settings\FixOne.Engine.Settings.csproj">
+      <Project>{5FC4D2CC-C971-4D25-B3CC-62675BB76EE6}</Project>
+      <Name>FixOne.Engine.Settings</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

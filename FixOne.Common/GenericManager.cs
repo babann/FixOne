@@ -8,7 +8,7 @@ using System.Diagnostics;
 namespace FixOne.Common
 {
 	/// <summary>
-	/// 
+	/// Generic manages. Used as a base class for all modules namagers.
 	/// </summary>
 	/// <typeparam name="T">Modules type</typeparam>
 	/// <typeparam name="V">Singleton type</typeparam>
@@ -16,6 +16,13 @@ namespace FixOne.Common
 		where  T:Common.Interfaces.IModule
 		where V:class
 	{
+		#region Private fields
+
+		private string _modulesPath;
+		private List<T> _availableModules;
+
+		#endregion
+
 		#region Protected Fields
 
 		protected object writeLocker = new object();
@@ -26,14 +33,16 @@ namespace FixOne.Common
 
 		public IEnumerable<T> AvailableModules
 		{
-			get;
-			private set;
+			get {
+				return _availableModules;
+			}
 		}
 
 		public IEnumerable<T> EnabledModules
 		{
-			get;
-			private set;
+			get{
+				return _availableModules.Where (x => x.Enabled);
+			}
 		}
 
 		public static V Instance
@@ -48,7 +57,23 @@ namespace FixOne.Common
 
 		public GenericManager(string path)
 		{
-			var dlls = System.IO.Directory.GetFiles(PathHelper.MapPath(path), "*.dll");
+			_modulesPath = path;
+			_availableModules = new List<T> ();
+		}
+
+		public void EnableModules(params string[] moduleNames)
+		{
+			setEnabledModules(true, moduleNames);
+		}
+
+		public void DisableModules(params string[] moduleNames)
+		{
+			setEnabledModules(false, moduleNames);
+		}
+
+		public virtual void Init ()
+		{
+			var dlls = System.IO.Directory.GetFiles(PathHelper.MapPath(_modulesPath), "*.dll");
 
 			List<T> list = new List<T>();
 
@@ -70,24 +95,14 @@ namespace FixOne.Common
 					}
 			}
 
-			AvailableModules = list.ToArray();
-		}
-
-		public void EnableModules(params string[] moduleNames)
-		{
-			setEnabledModules(true, moduleNames);
-		}
-
-		public void DisableModules(params string[] moduleNames)
-		{
-			setEnabledModules(false, moduleNames);
+			_availableModules = list;
 		}
 
 		#region Private Methods
 
 		private void setEnabledModules(bool value, params string[] moduleNames)
 		{
-			if (AvailableModules == null || !AvailableModules.Any())
+			if (_availableModules == null || !_availableModules.Any())
 				return;
 
 			if (moduleNames == null)
@@ -95,13 +110,38 @@ namespace FixOne.Common
 
 			lock (writeLocker)
 			{
-				foreach (var logger in AvailableModules.Where(module => moduleNames.Contains(module.Name)))
+				foreach (var logger in _availableModules.Where(module => moduleNames.Contains(module.Name)))
 					logger.Enabled = value;
 			}
-
-			EnabledModules = AvailableModules.Where(module => module.Enabled).ToArray();
 		}
 
+		#endregion
+
+		#region Proteted Methods
+
+		protected bool AddModule(T module, bool replace)
+		{
+			var modules = _availableModules;
+			var idx = -1;
+			if(modules.Any(x => x.Name.Equals(module.Name)))
+				idx = modules.FindIndex(x => x.Name.Equals(module.Name));
+
+			if (idx >= 0) {
+				if (replace)
+					modules.RemoveAt (idx);
+				else
+					return false;
+			}
+
+			modules.Add(module);
+
+			lock(writeLocker)
+			{
+				_availableModules = modules;
+			}
+
+			return true;
+		}
 		#endregion
 	}
 }

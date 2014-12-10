@@ -21,7 +21,7 @@ namespace FixOne.Engine
 	public class Engine : IDisposable
 	{
 
-		#region Private Fields
+		#region Fields
 
 		bool engineStarted = false;
 		bool exit = false;
@@ -105,6 +105,8 @@ namespace FixOne.Engine
 		/// </summary>
 		public Engine ()
 		{
+			SettingsManager.Instance.Init ();
+
 			if (SettingsManager.Instance.CurrentSettings.EnabledLoggers != null)
 				EngineLogManager.Instance.EnableModules (SettingsManager.Instance.CurrentSettings.EnabledLoggers);
 
@@ -131,8 +133,13 @@ namespace FixOne.Engine
 					return;
 			}
 
+			EngineLogManager.Instance.Init ();
 			EngineLogManager.Instance.Start ();
+
+			PersistentStoragesManager.Instance.Init ();
 			PersistentStoragesManager.Instance.Start ();
+
+			DictionariesManager.Instance.Init ();
 			DictionariesManager.Instance.Start ();
 			Statistics.Latency.Start ();
 

@@ -3,15 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using FixOne.Entities.Exceptions;
 
 namespace FixOne.Common
 {
+	/// <summary>
+	/// Implementation of Singleton pattern.
+	/// </summary>
 	internal static class Singleton<T>
 	   where T : class
 	{
+		#region Private Fields
+
+		/// <summary>
+		/// Current isntance
+		/// </summary>
 		private static T _instance;
+
+		/// <summary>
+		/// Threads sync object
+		/// </summary>
 		private static object _lock = new object();
 
+		#endregion
+
+		#region Properties
+
+		/// <summary>
+		/// Gets the current instance.
+		/// </summary>
 		internal static T Instance
 		{
 			get
@@ -36,9 +56,15 @@ namespace FixOne.Common
 
 							if (constructor == null || constructor.IsAssembly)
 								// Also exclude internal constructors.
-								throw new Exception(string.Format("A constructor is missing for '{0}'.", typeof(T).Name));
+								throw new FixEngineException(string.Format("A constructor is missing for '{0}'.", typeof(T).Name));
 
-							_instance = (T)constructor.Invoke(null);
+							try
+							{
+								_instance = (T)constructor.Invoke(null);
+							} catch(Exception exc) {
+								throw new FixEngineException ("Singleton initialization failed", exc);
+							}
+
 						}
 					}
 				}
@@ -46,5 +72,7 @@ namespace FixOne.Common
 				return _instance;
 			}
 		}
+
+		#endregion
 	}
 }

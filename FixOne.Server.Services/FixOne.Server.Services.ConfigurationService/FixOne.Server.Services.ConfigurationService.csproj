@@ -3,13 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{63577669-03E6-497E-890F-1D9F06D49A85}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FixOne.Server.Services.ConfigurationService</RootNamespace>
     <AssemblyName>FixOne.Server.Services.ConfigurationService</AssemblyName>
     <ReleaseVersion>0.0.0.1</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

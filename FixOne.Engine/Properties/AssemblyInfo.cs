@@ -36,3 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("0.0.0.1")]
 
 [assembly:InternalsVisibleTo("FixOne.Server")]
+[assembly:InternalsVisibleTo("UnitTests")]

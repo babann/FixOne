@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace FixOne.Common
 {
@@ -9,7 +10,9 @@ namespace FixOne.Common
 			if (null == path)
 				throw new ArgumentException ("PathHelper - Path can't be null.");
 
-			var runningPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+			var assembly = System.Reflection.Assembly.GetEntryAssembly ();
+			var runningPath = assembly == null ? Environment.CurrentDirectory : System.IO.Path.GetDirectoryName(assembly.Location);
+
 			if (string.IsNullOrWhiteSpace (path))
 				return runningPath;
 

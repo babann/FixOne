@@ -10,6 +10,9 @@ using FixOne.Engine.Managers;
 
 namespace FixOne.Engine
 {
+	/// <summary>
+	/// Represents the Network Session - base communication layer.
+	/// </summary>
 	internal sealed class NetworkSession
 	{
 

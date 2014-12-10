@@ -39,3 +39,4 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("Test.Entities")]
 [assembly: InternalsVisibleTo("FixOne.Common")]
 [assembly: InternalsVisibleTo("FixOne.Parsers.Generic")]
+[assembly: InternalsVisibleTo("UnitTests")]

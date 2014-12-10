@@ -11,31 +11,71 @@ namespace FixOne.Engine.Managers
 {
 	public class EngineLogManager : Common.GenericManager<Common.Interfaces.IEngineLogger, EngineLogManager>
 	{
+		#region Constants
 
-		#region Private Fields
-
-		ConcurrentQueue<LogMessage> messages = new ConcurrentQueue<LogMessage> ();
-		Thread logWriterThread;
-		bool exit = false;
-		bool started = false;
+		/// <summary>
+		/// The default size of the buffer to dequeu messages before flush
+		/// </summary>
+		private const int DEFAULT_BUFFER_SIZE = 1000; //TODO: make configurable
 
 		#endregion
 
+		#region Private Fields
+
+		/// <summary>
+		/// Messages to be written into logs
+		/// </summary>
+		ConcurrentQueue<LogMessage> messages = new ConcurrentQueue<LogMessage> ();
+
+		/// <summary>
+		/// The log writer thread.
+		/// </summary>
+		Thread logWriterThread;
+
+		/// <summary>
+		/// Stop indicator for thread.
+		/// </summary>
+		bool isExiting = false;
+
+		/// <summary>
+		/// The started flag.
+		/// </summary>
+		bool isStarted = false;
+
+		/// <summary>
+		/// The isStaring flag.
+		/// </summary>
+		bool isStarting = false;
+
+		#endregion
+
+		#region Constructor
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FixOne.Engine.Managers.EngineLogManager"/> class.
+		/// </summary>
 		private EngineLogManager ()
 			: base (SettingsManager.Instance.CurrentSettings.LoggersPath)
 		{
 			
 		}
 
+		#endregion
+
 		#region Public Methods
 
+		/// <summary>
+		/// Start this working thead if loggers manager.
+		/// </summary>
 		public void Start ()
 		{
-			if (started)
+			if (isStarted || isStarting)
 				return;
 
+			isStarting = true;
+
 			List<LogMessage> initializationErrors = new List<LogMessage> ();
-			var modules = AvailableModules.ToList ();
+			var modules = EnabledModules.ToArray();
 
 			foreach (var module in modules) {
 				try {
@@ -49,50 +89,24 @@ namespace FixOne.Engine.Managers
 			if (initializationErrors.Any ())
 				initializationErrors.ForEach (msg => messages.Enqueue (msg));
 
-			started = true;
+			isStarted = true;
 
-			exit = false;
-			logWriterThread = new Thread (() => {
-				while (!exit) {
-					if (EnabledModules != null && EnabledModules.Any ()) {
-						int bufferSize = 1000;
-						List<LogMessage> buffer = new List<LogMessage> (bufferSize);
-						int cnt = 0;
-						LogMessage msg;
-						lock (writeLocker) {
-							while (messages.TryDequeue (out msg) && cnt++ < bufferSize)
-								buffer.Add (msg);
-						}
-						
-						if (buffer.Any ()) {
-							foreach (var logger in EnabledModules) {
-								for (int ii = 0; ii < buffer.Count; ii++) {
-									try {
-										logger.LogMessage (buffer [ii]);
-									} catch (Exception exc) {
-										DisableModules (logger.Name);
-										messages.Enqueue (new LogMessage (LogMessageLevel.Error, string.Format ("Failed to log message with logger '{0}'. Error: {1}. Module will be disabled.", logger.Name, exc.Message)));
-									}
-								}
-							}
-						}
-					}
-
-					Thread.Sleep (1);
-				}
-			});
+			isExiting = false;
+			logWriterThread = new Thread (threadMethod);
 			logWriterThread.IsBackground = true;
 			logWriterThread.Name = "LOGWRT";
 			logWriterThread.Start ();
+
+			isStarting = false;
 		}
 
 		public void Stop ()
 		{
-			exit = true;
+			isExiting = true;
 			
 			//TODO: add flush functionality to guaranty all the queued messages are written to the log
 
-			started = false;
+			isStarted = false;
 		}
 
 		internal void LogEntry (LogMessage message)
@@ -168,6 +182,51 @@ namespace FixOne.Engine.Managers
 		public void Error (string format, Exception exc, params object[] values)
 		{
 			Error (string.Format (format, values), exc);
+		}
+
+		#endregion
+
+		#region Implementation
+
+		/// <summary>
+		/// Worker method running in bacground.
+		/// </summary>
+		private void threadMethod()
+		{
+			while (!isExiting) {
+				if (EnabledModules.Any ())
+					doBufferReadWrite (DEFAULT_BUFFER_SIZE);
+
+				Thread.Sleep (1);
+			}
+		}
+
+		/// <summary>
+		/// Proess one iteration of fill buffer - flush data operation
+		/// </summary>
+		/// <param name="bufferSize">Buffer size.</param>
+		private void doBufferReadWrite(int bufferSize)
+		{
+			List<LogMessage> buffer = new List<LogMessage> (bufferSize);
+			int cnt = 0;
+			LogMessage msg;
+			lock (writeLocker) {
+				while (messages.TryDequeue (out msg) && cnt++ < bufferSize)
+					buffer.Add (msg);
+			}
+
+			if (buffer.Any ()) {
+				foreach (var logger in EnabledModules) {
+					for (int ii = 0; ii < buffer.Count; ii++) {
+						try {
+							logger.LogMessage (buffer [ii]);
+						} catch (Exception exc) {
+							DisableModules (logger.Name);
+							messages.Enqueue (new LogMessage (LogMessageLevel.Error, string.Format ("Failed to log message with logger '{0}'. Error: {1}. Module will be disabled.", logger.Name, exc.Message)));
+						}
+					}
+				}
+			}
 		}
 
 		#endregion

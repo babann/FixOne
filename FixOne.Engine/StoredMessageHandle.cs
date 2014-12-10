@@ -4,6 +4,9 @@ using FixOne.Entities;
 
 namespace FixOne.Engine
 {
+	/// <summary>
+	/// Represents the message stored in ersistent storage.
+	/// </summary>
 	internal class StoredMessageHandle : IDisposable
 	{
 		internal Dictionary<string, long> StorageIdentifiers {
