@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom.Collections.KVV.Test", "Custom.Collections.KVV.Test\Custom.Collections.KVV.Test.csproj", "{B42822BB-B598-4A03-ADEC-5B2DD3EEFED6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom.Collections.KVV", "Custom.Collections.KVV\Custom.Collections.KVV.csproj", "{36F7A9EA-DAFC-4DC7-8B96-F53DDC5B1299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom.Collections.KVV.UnitTest", "Custom.Collections.KVV.UnitTest\Custom.Collections.KVV.UnitTest.csproj", "{708086C5-E1F7-4263-B643-0EF4C9206656}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36F7A9EA-DAFC-4DC7-8B96-F53DDC5B1299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36F7A9EA-DAFC-4DC7-8B96-F53DDC5B1299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36F7A9EA-DAFC-4DC7-8B96-F53DDC5B1299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36F7A9EA-DAFC-4DC7-8B96-F53DDC5B1299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708086C5-E1F7-4263-B643-0EF4C9206656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{708086C5-E1F7-4263-B643-0EF4C9206656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{708086C5-E1F7-4263-B643-0EF4C9206656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{708086C5-E1F7-4263-B643-0EF4C9206656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B42822BB-B598-4A03-ADEC-5B2DD3EEFED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B42822BB-B598-4A03-ADEC-5B2DD3EEFED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B42822BB-B598-4A03-ADEC-5B2DD3EEFED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B42822BB-B598-4A03-ADEC-5B2DD3EEFED6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Custom.Collections.KVV.UnitTest\Custom.Collections.KVV.UnitTest.csproj
+	EndGlobalSection
+EndGlobal
